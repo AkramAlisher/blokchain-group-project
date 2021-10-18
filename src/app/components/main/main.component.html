@@ -1,0 +1,12 @@
+<div class="row p-5">
+  <div *ngFor="let coffee of coffee" class="col-4">
+    <div class="card">
+      <img [src]="coffee.img" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{coffee.title}}</h5>
+        <p class="card-text">{{coffee.description}}</p>
+        <a [routerLink]="'create-offer/' + coffee.id" class="btn btn-primary">Заказать</a>
+      </div>
+    </div>
+  </div>
+</div>

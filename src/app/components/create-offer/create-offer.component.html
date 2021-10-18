@@ -1,0 +1,60 @@
+<div class="row justify-content-center p-5">
+  <div *ngIf="step === 1" class="col-6 shadow p-5">
+    <form ngNativeValidate (submit)="step = 2">
+      <h3>Заказать {{coffee?.title}}</h3>
+      <div class="my-3">
+        <label for="count" class="form-label">Количество коробок</label>
+        <input
+          name="count"
+          [(ngModel)]="offer.count"
+          #count="ngModel"
+          [min]="1"
+          [max]="10"
+          required
+          type="number"
+          class="form-control"
+          id="count"
+          placeholder="Введите количество коробок"
+        >
+      </div>
+      <div class="my-3">
+        <label for="weight" class="form-label">Вес коробки (кг)</label>
+        <input
+          name="weight"
+          [(ngModel)]="offer.weight"
+          [min]="1"
+          [max]="10"
+          #weight="ngModel"
+          required
+          type="number"
+          class="form-control"
+          id="weight"
+          placeholder="Введите вес одной коробки"
+        >
+      </div>
+      <div class="my-3">
+        <label for="date" class="form-label">Дата отправки</label>
+        <input
+          name="date"
+          [(ngModel)]="offer.date"
+          #date="ngModel"
+          required
+          type="date"
+          class="form-control"
+          id="date"
+          placeholder="Введите дату отправки"
+        >
+      </div>
+      <button type="submit" class="btn btn-primary">Заказать</button>
+    </form>
+  </div>
+  <div *ngIf="step === 2" class="col-6 shadow p-5">
+    <h3>Ваш заказ {{offer.status}}</h3>
+    <p>Количество коробок: {{offer.count}}</p>
+    <p>Вес коробки (кг): {{offer.weight}}</p>
+    <p>Дата отправки: {{offer.date}}</p>
+
+    <button *ngIf="offer.status !== 'доставлен'" (click)="checkStatus()" class="btn btn-primary">Проверить статус</button>
+    <a *ngIf="offer.status === 'доставлен'" routerLink="/" class="btn btn-primary">Сделать еще один заказ</a>
+  </div>
+</div>
